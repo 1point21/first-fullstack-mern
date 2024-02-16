@@ -29,17 +29,16 @@ app.use(express.json());
 // parse received cookies
 app.use(cookieParser());
 
-// ---ROUTINT---
+// ---ROUTING---
 
 // serve up static file
 app.use("/", express.static(path.join(__dirname, "public")));
 
-// app.use(express.use('public'))
-// another way to serve up static file, but not specific path
-
 app.use("/", require("./routes/root"));
 
 app.use("/users", require("./routes/userRoutes"))
+
+app.use("/notes", require("./routes/noteRoutes"))
 
 app.all("*", (req, res) => {
   res.status(404);
